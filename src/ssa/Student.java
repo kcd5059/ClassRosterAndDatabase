@@ -92,13 +92,6 @@ public class Student {
 		System.out.println("Empl Id   First name         Last name          Eye color   Months at SSA");
 		System.out.println("=======   ================   ================   =========   =============");
 		
-//		Collections.sort(classRoster, new Comparator<Student>() {
-//			@Override
-//			public int compare(Student student1, Student student2) {
-//				return student1.id.compareTo(student2.id);
-//			}
-//		});
-		
 		Set<String> idSet = database.keySet();
 		ArrayList<String> idList = new ArrayList<>();
 		
