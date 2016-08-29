@@ -29,6 +29,7 @@ public class Student {
 		setup();
 	}
 	
+	//Print single student info
 	private void printStudent(Student student) {
 		
 		System.out.println(String.format("%-6s", student.id) + "    " + String.format("%-16s", student.firstName) + "   "
@@ -38,6 +39,7 @@ public class Student {
 	
 	private void setup() {
 		
+		//Create student roster
 		classRoster.add(new Student("001122", "Michael", "Clair", "Other", 12));
 		classRoster.add(new Student("001112", "Stephen", "Rook", "Brown", 11));
 		classRoster.add(new Student("005295", "Kyle", "Deen", "Blue", 2));
@@ -66,12 +68,14 @@ public class Student {
 
 	public void printClassRoster() {
 		
+		//Print roster sorted alphabetically by first name
 		System.out.println("----------PART 2----------");
 		System.out.println("Student class roster");
 		System.out.println();
 		System.out.println("Empl Id   First name         Last name          Eye color   Months at SSA");
 		System.out.println("=======   ================   ================   =========   =============");
 		
+		//Sort by first name with custom comparator
 		Collections.sort(classRoster, new Comparator<Student>() {
 			@Override
 			public int compare(Student student1, Student student2) {
@@ -79,6 +83,7 @@ public class Student {
 			}
 		});
 
+		//Print all student info in the roster
 		for (Student student : classRoster) {
 
 			System.out.println(String.format("%-6s", student.id) + "    " + String.format("%-16s", student.firstName) + "   "
@@ -87,27 +92,36 @@ public class Student {
 		}
 		System.out.println();
 		
+		//Set up for part three
 		System.out.println("----------PART 3----------");
 		System.out.println("Empl Id   First name         Last name          Eye color   Months at SSA");
 		System.out.println("=======   ================   ================   =========   =============");
 		
+		//Create Set of all student keys from database HashMap
 		Set<String> idSet = database.keySet();
+		//Create new list to hold all keys (ids)
 		ArrayList<String> idList = new ArrayList<>();
 		
+		//Pass all keys into list for sorting
 		for (String id : idSet) {
 			idList.add(id);
 		}
 		
+		//Sorry list
 		Collections.sort(idList);
 		
+		//Iterate through list and print student before and after my id
 		for (int id = 0; id < idList.size(); id++) {
 
+			//When it finds my id...
 			if ( idList.get(id).equals("005295") ) {
 				
+				//Save student before, myself and student after 
 				Student studentBefore = database.get(idList.get(id - 1));
 				Student me = database.get("005295");
 				Student studentAfter = database.get(idList.get(id + 1));
 				
+				//Print all three students
 				printStudent(studentBefore);
 				printStudent(me);
 				printStudent(studentAfter);
@@ -117,53 +131,6 @@ public class Student {
 		}
 		
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((eyeColor == null) ? 0 : eyeColor.hashCode());
-		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
-		result = prime * result + monthsEmployed;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Student other = (Student) obj;
-		if (eyeColor == null) {
-			if (other.eyeColor != null)
-				return false;
-		} else if (!eyeColor.equals(other.eyeColor))
-			return false;
-		if (firstName == null) {
-			if (other.firstName != null)
-				return false;
-		} else if (!firstName.equals(other.firstName))
-			return false;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (lastName == null) {
-			if (other.lastName != null)
-				return false;
-		} else if (!lastName.equals(other.lastName))
-			return false;
-		if (monthsEmployed != other.monthsEmployed)
-			return false;
-		return true;
-	}
-	
 	
 
 }
