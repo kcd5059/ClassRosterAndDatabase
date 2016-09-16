@@ -79,7 +79,7 @@ public class Student {
 		Collections.sort(classRoster, new Comparator<Student>() {
 			@Override
 			public int compare(Student student1, Student student2) {
-				return student1.firstName.compareTo(student2.firstName);
+				return student1.lastName.compareTo(student2.lastName);
 			}
 		});
 
